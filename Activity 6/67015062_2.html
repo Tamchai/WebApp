@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <style>
+        header.top{
+            color:darkblue;
+            background-color: gold;
+            text-align: center;
+        }
+        header.article{
+            color: pink;
+            text-align: center;
+        }
+        main {
+            padding: 0 10%;
+        }
+       .reporter{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: row-reverse;
+        }
+        .card-content {
+            color: steelblue;
+        }
+        time{
+            color: deeppink;
+            font-style: italic;
+        }
+        img{
+            border: solid steelblue;
+        }
+        article{
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+        .col2{
+            padding-right: 80px;
+        }
+        .bottom-content {
+            display: flex;  
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row-reverse;
+        }
+        aside{
+            border-top: 3px solid black;
+            border-bottom: 3px solid black;
+        }
+        aside p {
+            font-size: 38px;
+            font-style: italic;
+            padding-right: 50px
+        } 
+        .luckd form {
+            background-color: white;
+            width: fit-content;
+        }
+        footer{
+            color:blue;
+            background-color: gold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header class="top"><h1>SW Studio Today</h1></header>
+    <header class="article"><h2>The record of the CSS class</h2></header>
+    <main>
+        <div class="reporter">
+            <img src="https://i.postimg.cc/tTzVsH4P/68271a02-b38f-452f-8d8a-bba07d3dbf47.jpg" alt="picture" width=200>
+                <div class="card-content">
+                    Reported by <br>
+                    Mr. Tammachai Satsue <br> 
+                    (Tiw) <br> 
+                    ID 67015062 <br>
+                    <br>
+                    <time datetime="2025-07-14">July 14, 2025</time>
+                </div>
+        </div>
+        
+        <article>
+            <section class="col1">
+                <h3>Introduction</h3>
+                <p>describe your background about CSS e.g.
+                <ul>
+                    <li>do you know CSS?</li>
+                    <li>Have you ever been using CSS?</li>
+                    <li>Have you ever worked with CSS before?</li>
+                    <li>Have you any idea how CSS works?</li>
+                    <li>What are you expecting from CSS?</li>
+                    <li>etc.</li>
+                </ul>
+            </section>
+
+            <section class="col2">
+                <h3>The expectation</h3>
+                <p>Describe your expectations for today's class</p>
+                <p>You can list it like this:</p>
+                <ol>
+                    <li>expect #1</li>
+                    <li>expect #2</li>
+                    <li>expect #3</li>
+                </ol>
+            </section>
+        </article>
+
+        <div class="bottom-content">
+            <aside>
+                <p><em>your quote of <br > today's class</em></p>
+            </aside>
+            <div class="parent-bottom-conten">
+                <section class="prog">
+                    <p>Progress of today's class <progress value="2" max="5"></progress></p>
+                </section>
+
+                <section class="luckd">
+                    <p>register for lucky draw</p>
+                    <form>
+                        <fieldset>
+                            <label>Name:</label><em>*</em> <input type="text" id="name" placeholder="Tammachai Satsue" autofocus required><br>
+                            <label>email:</label><em>*</em> <input type="email" id="email" placeholder="tamjai@maiwai.com" autofocus required><br>
+                            <label>Tel:</label><em>*</em> <input type="tel" id="tel" placeholder="0xx-xxxxxxx" pattern="[0-9]{3}-[0-9]{7}" autofocus required><br>
+                            <input type="submit">
+                        </fieldset>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </main>
+    <footer>
+        ce.kmitl all rights reserved & copyright 2020
+    </footer>
+</body>
+</html>
