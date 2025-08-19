@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div id="maincontainer"></div>
+        <script>
+            const container = document.getElementById("maincontainer");
+
+            const title = document.createElement("h2");
+            title.textContent = "Exercise 04: JavaScript&DOM";
+            container.appendChild(title);
+
+            const btn = document.createElement("button");
+            btn.textContent = "Click me to display Date and Time";
+            container.appendChild(btn);
+
+            container.appendChild(document.createElement("br"));
+            container.appendChild(document.createElement("br"));
+
+            const personalInfo = document.createElement("a");
+            personalInfo.textContent = "Personal Info";
+            personalInfo.href = "#";
+            personalInfo.style.color = "hotpink"
+            container.appendChild(personalInfo);
+
+            container.appendChild(document.createElement("br"));
+            container.appendChild(document.createElement("br"));
+
+            const snapshots = document.createElement("h2");
+            snapshots.textContent = "Snapshots";
+            container.appendChild(snapshots);
+
+            const ul = document.createElement("ul");
+            const items = ["Fireworks","Crest","Action","Buffalo"];
+            items.forEach(text => {
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                a.textContent = text;
+                a.href = '#';
+                li.appendChild(a);
+                ul.appendChild(li);
+            });
+            container.appendChild(ul);
+
+            const footerImg = document.createElement("img");
+            footerImg.src = "https://m.media-amazon.com/images/I/813kqvYoRfL.png";
+            footerImg.style.width = "500px";
+            container.appendChild(footerImg);
+        </script>
+    </body>
+</html>
