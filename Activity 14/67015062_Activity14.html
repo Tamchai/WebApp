@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <div id="maincontainer"></div>
+    <script>
+        const container = document.getElementById("maincontainer");
+//---------------------------Title-----------------------------------------//
+        const title = document.createElement("h1");
+        title.textContent = "Exercise 04: JavaScript&DOM";
+        // title.style.fontFamily = "arial";
+        container.appendChild(title);
+//---------------------------Button----------------------------------------//
+        const btn = document.createElement("button");
+        btn.textContent = "Click me to display Date and Time";
+        btn.style.fontFamily = "arial";
+        container.appendChild(btn);
+
+        // function
+        let dateBox, worker, isRunning = false;
+        let currentTime = new Date();
+        const btnRect = btn.getBoundingClientRect();
+        const btnStyle = getComputedStyle(btn);
+        
+        btn.addEventListener("click", () => {
+            if (!dateBox) {
+                dateBox = document.createElement("div");
+                dateBox.id = "dateBox";
+                dateBox.style.position = "fixed";
+                dateBox.style.top = "5px";
+                dateBox.style.right = "5px";
+                dateBox.style.width = "auto";
+                dateBox.style.maxWidth = "2000px";
+                dateBox.style.height = "auto";
+                dateBox.style.border = btnStyle.border;
+                dateBox.style.padding = btnStyle.padding;
+                dateBox.style.lineHeight = btnStyle.lineHeight;
+                dateBox.style.fontFamily = "arial";
+                dateBox.style.cursor = "pointer";
+                dateBox.style.whiteSpace = "nowrap";
+                dateBox.style.overflow = "hidden";
+                dateBox.style.backgroundColor = "pink";
+
+                dateBox.textContent = currentTime.toString();
+                document.body.appendChild(dateBox);
+
+                startWorker();
+                btn.style.display = "none";
+
+                dateBox.addEventListener("click", toggleWorker);
+            }
+        });
+        function startWorker() {
+            if (!worker) {
+                worker = new Worker("67015062_worker.js");
+                worker.onmessage = (e) => {
+                    if (isRunning) {
+                        const { color } = e.data;
+                        currentTime = new Date(currentTime.getTime() + 1000);
+                        dateBox.textContent = currentTime.toString();
+                        dateBox.style.backgroundColor = color;
+                    }
+                };
+            }
+            isRunning = true;
+
+            dateBox.style.position = "fixed";
+            dateBox.style.top = "5px";
+            dateBox.style.right = "5px";
+            dateBox.style.left = "auto";
+            btn.style.display = "none";
+        }
+        function stopWorker() {
+            isRunning = false;
+
+            dateBox.style.position = "absolute";
+            dateBox.style.top = `${btnRect.top + window.scrollY}px`;
+            dateBox.style.left = `${btnRect.left + window.scrollX}px`;
+            dateBox.style.right = "auto";
+            dateBox.style.width = "auto";
+            dateBox.style.maxWidth = "2000px";
+            dateBox.style.height = "auto";
+            btn.style.display = "inline-block";
+        }
+        function toggleWorker() {
+            if (isRunning) stopWorker();
+            else startWorker();
+        }
+//------------------------------------------------------------------------//
+        container.appendChild(document.createElement("br"));
+        container.appendChild(document.createElement("br"));
+        
+//------------------------Personal Info------------------------------------//
+        const personalInfo = document.createElement("a");
+        personalInfo.textContent = "Personal Info";
+        personalInfo.href = "#";
+        personalInfo.style.fontFamily = "arial";
+        personalInfo.style.color = "hotpink";
+        personalInfo.style.textDecoration = "underline";
+        personalInfo.style.background = "none";
+
+        container.appendChild(personalInfo);
+
+        // function
+
+        let infoVisible = false;
+        let infoList;
+
+        personalInfo.addEventListener("click",(e) => {
+            e.preventDefault();
+            if(!infoVisible){
+                infoList = document.createElement("ul");
+                infoList.innerHTML = `
+                    <li>Name: Mr.Tammachai Satsue, ID: 6715062</li>
+                    <li>Subject: Web Application Development</li>
+                    <li>Semester: 2</li>
+                `;
+                infoList.style.fontFamily = "arial";
+                container.insertBefore(infoList,personalInfo.nextSibling);
+                infoVisible = true;
+            } else{
+                infoList.remove();
+                infoVisible =false;
+            }
+        });
+
+        // effect
+        personalInfo.addEventListener("mouseover",() => {
+            personalInfo.style.color = "blue";
+            personalInfo.style.textDecoration = "underline";
+            personalInfo.style.background = "yellow";
+        });
+        personalInfo.addEventListener("mouseout",() => {
+            personalInfo.style.color = "hotpink";
+            personalInfo.style.textDecoration = "underline";
+            personalInfo.style.background = "none";
+        });
+
+//------------------------Snapshots---------------------------------------//
+        const snapshots = document.createElement("h1");
+        snapshots.textContent = "Snapshots";
+        snapshots.style.fontFamily = "arial";
+        container.appendChild(snapshots);
+
+        const items = {
+            "Cat":"https://i.natgeofe.com/n/9135ca87-0115-4a22-8caf-d1bdef97a814/75552.jpg",
+            "Dog":"https://i.redd.it/the-two-best-dog-in-fiction-v0-8suko1iyoi2f1.png?width=800&format=png&auto=webp&s=fc006c5a772091cd0c23de99a8088ec95629dd8b",
+            "Hamster":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcJSj2Zpkx3sH3gFPruy6TFqYMmJIQgF8VcQ&s",
+            "Panda":"https://i.pinimg.com/736x/90/38/4a/90384a335300e02f44b5adeb007f7aa2.jpg"
+        };
+
+        const ul = document.createElement("ul");
+        container.appendChild(ul);
+
+        const snapshotImg = document.createElement("img");
+        snapshotImg.style.width = "500px";
+        snapshotImg.style.display = "none";
+        container.appendChild(snapshotImg);
+
+        Object.keys(items).forEach(text => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.textContent = text;
+            a.href = "#";
+            a.style.fontFamily = "arial";
+            a.addEventListener("click", (e) => {
+                e.preventDefault();
+                footerImg.src = items[text];
+            });
+            li.appendChild(a);
+            ul.appendChild(li);
+        });
+//------------------------Image---------------------------------------//
+        const footerImg = document.createElement("img");
+        footerImg.src = "https://50814aoy.wordpress.com/wp-content/uploads/2016/12/tumblr_lzt16u8m6e1qbxpeso1_5001.jpg";
+        footerImg.style.width = "500px";
+        container.appendChild(footerImg);
+    </script>
+</body>
+</html>
