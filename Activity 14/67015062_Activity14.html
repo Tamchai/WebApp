@@ -53,10 +53,10 @@
         function startWorker() {
             if (!worker) {
                 worker = new Worker("67015062_worker.js");
-                worker.onmessage = (e) => {
+                    worker.onmessage = (e) => {
                     if (isRunning) {
                         const { color } = e.data;
-                        currentTime = new Date(currentTime.getTime() + 1000);
+                        currentTime = new Date();
                         dateBox.textContent = currentTime.toString();
                         dateBox.style.backgroundColor = color;
                     }
